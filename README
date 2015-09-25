@@ -1,0 +1,7 @@
+# SCONS TEST #
+
+Just a small project to test how scons works and, secondarily, to test the install of gcc (in /vnmr/gcc).
+
+See the gcc-4.9.3- repository for gcc
+
+Tim Burrow 2015-September
