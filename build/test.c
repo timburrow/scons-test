@@ -13,7 +13,7 @@ int main()
    x = 60.0;
    val = PI / 180.0;
    ret = cos( x*val );
-   printf("The cosine of %lf is %lf degrees\n", x, ret);
+   printf("The cosine of %lf degrees is %lf \n", x, ret);
   a=4;
   b=16;
   output_(&a,&b);
