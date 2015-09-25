@@ -1,0 +1,23 @@
+# Test building
+import sys
+import os
+Import ('sysroot')
+
+platform = sys.platform
+
+largeFileFlags = '-DHAVE_LARGEFILE_SUPPORT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE'
+env = Environment(CCFLAGS    = '-O2 -Wall -m32 ' + largeFileFlags,)
+env.PrependENVPath('PATH', '/vnmr/gcc/bin')
+
+print env["ENV"]
+
+if (platform == 'darwin'):
+      env.Replace(CC='gcc')
+      env.Replace(FORTRAN='gfortran')
+      env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386 -isysroot '+sysroot,
+        LINKFLAGS = ' -arch i386 ', FORTRANFLAGS = ' -m32 ')
+
+env.Program(target='test', source=['test.c','output.f'])
+
+#      sysroot = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk'
+#      env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386  -isysroot ' + sysroot,
