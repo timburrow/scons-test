@@ -12,4 +12,7 @@ cd scons-2.4.0
 sudo python setup.py install --standard-lib
 ```
 
+Set the SDK in the top level SConstruct file (you need Xcode installed for the SDK) by setting OSXsysroot
+Set whether gcc or llvm/clang (cc) is used to compile the C file by setting OSXCC
+
 Tim Burrow 2015-September
