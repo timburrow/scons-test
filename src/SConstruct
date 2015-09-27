@@ -1,7 +1,7 @@
 # Test building
 import sys
 import os
-Import ('sysroot')
+Import ('OSXCC OSXsysroot')
 
 platform = sys.platform
 
@@ -12,12 +12,15 @@ env.PrependENVPath('PATH', '/vnmr/gcc/bin')
 print env["ENV"]
 
 if (platform == 'darwin'):
-      env.Replace(CC='gcc')
-      env.Replace(FORTRAN='gfortran')
-      env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386 -isysroot '+sysroot,
-        LINKFLAGS = ' -arch i386 ', FORTRANFLAGS = ' -m32 ')
+      env.Replace(CC=OSXCC)
 
+if (OSXsysroot and (OSXCC == 'gcc')):
+  env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386 -isysroot '+OSXsysroot,
+        LINKFLAGS = ' -arch i386 -L/usr/lib', FORTRANFLAGS = ' -m32 ')
+else:
+  env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386 ',
+        LINKFLAGS = ' -arch i386 -L/usr/lib ', FORTRANFLAGS = ' -m32 ')
+
+env.Replace(FORTRAN='gfortran')
 env.Program(target='test', source=['test.c','output.f'])
 
-#      sysroot = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk'
-#      env.Append(CPPDEFINES = 'MACOS', CPPFLAGS = ' -arch i386  -isysroot ' + sysroot,
