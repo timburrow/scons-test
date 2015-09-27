@@ -9,8 +9,9 @@ largeFileFlags = '-DHAVE_LARGEFILE_SUPPORT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_S
 env = Environment(CCFLAGS    = '-O2 -Wall -m32 ' + largeFileFlags,)
 
 print env["ENV"]
+#print env.Dump()
 
-if (platform == 'darwin'):
+if (platform == 'Xdarwin'):
   env.Replace(CC=OSX_CC)
   
   if (OSX_PATH):
@@ -24,6 +25,7 @@ if (platform == 'darwin'):
         LINKFLAGS = ' -arch i386 -L/usr/lib ', FORTRANFLAGS = ' -m32 ')
 
   env.Replace(FORTRAN='gfortran')
+
 
 env.Program(target='test', source=['test.c','output.f'])
 
