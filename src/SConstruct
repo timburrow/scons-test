@@ -1,6 +1,8 @@
 # Test building
 import sys
 import os
+import darwin
+
 Import ('OSX_CC OSX_SDK OSX_PATH')
 
 platform = sys.platform
@@ -10,6 +12,8 @@ env = Environment(CCFLAGS    = '-O2 -Wall -m32 ' + largeFileFlags,)
 
 print env["ENV"]
 #print env.Dump()
+darwin.darwincompile(env)
+print env["ENV"]
 
 if (platform == 'Xdarwin'):
   env.Replace(CC=OSX_CC)
