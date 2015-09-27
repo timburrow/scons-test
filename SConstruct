@@ -19,7 +19,7 @@ OSX_CC = 'cc'
 # set a path to the compiler; this will be prepended to the PATH. For example, /vnmr/gcc/bin or /usr/local/bin
 OSX_PATH = '/vnmr/gcc/bin'
 
-print OSXsysroot
+print OSX_SDK
 
 buildList=['src']
 for i in buildList:
