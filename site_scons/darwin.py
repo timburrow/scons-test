@@ -11,12 +11,13 @@ def darwincompile(env):
   if (platform == 'darwin'):
     # Set this to the SDK. XCode 7 needs MacOSX10.11.sdk, Xcode 6.x needs MacOSX10.10.sdk
     # export OSX_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk'
+    # TODO: automagically find right SDK
     if 'OSX_SDK' in os.environ:
       OSX_SDK = os.environ['OSX_SDK']
     else:
       OSX_SDK = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk'
 
-    # Choose your C compiler: cc is clang, gcc is /vnmr/gcc/bin/gcc (gcc 4.9.3)
+    # Choose your C compiler: cc is clang, gcc is /usr/local/bin/gcc (gcc 5.2 if from gcc-5.2-OSX repo)
     # export CC=cc
     if 'CC' in os.environ:
       OSX_CC = os.environ['CC'];
@@ -35,7 +36,7 @@ def darwincompile(env):
     if 'OSX_GCC_PATH' in os.environ:
       OSX_GCC_PATH = os.environ['OSX_GCC_PATH']
     else:
-      OSX_GCC_PATH = '/vnmr/gcc/bin'
+      OSX_GCC_PATH = '/usr/local/bin'
 
     env.Replace(CC = OSX_CC)
     env.Replace(FORTRAN = OSX_F77)
