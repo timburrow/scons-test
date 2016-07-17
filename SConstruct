@@ -7,4 +7,4 @@ platform = sys.platform
 # export OSX_SDK='-sdk macosx'
 
 SConscript('lib/SConstruct', variant_dir = 'build/lib') 
-SConscript('src/SConstruct', variant_dir = 'build')
+SConscript('src/SConstruct', variant_dir = 'build/bin')

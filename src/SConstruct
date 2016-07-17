@@ -7,7 +7,7 @@ largeFileFlags = '-DHAVE_LARGEFILE_SUPPORT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_S
 env = Environment(CCFLAGS    = '-Os -Wall -m32 ' + largeFileFlags,)
 darwin.darwincompile(env)
 env.Append(LIBS='library')
-env.Append(LIBPATH='lib')
+env.Append(LIBPATH='../lib')
 print env["ENV"]
 
 env.Program(target='test', source=['test.c'])
