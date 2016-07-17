@@ -3,12 +3,14 @@ import sys
 import os
 import darwin
 
+
 largeFileFlags = '-DHAVE_LARGEFILE_SUPPORT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE'
 env = Environment(CCFLAGS    = '-Os -Wall -m32 ' + largeFileFlags,)
+
+print env["ENV"]
+#print env.Dump()
 darwin.darwincompile(env)
-env.Append(LIBS='library')
-env.Append(LIBPATH='lib')
 print env["ENV"]
 
-env.Program(target='test', source=['test.c'])
+env.SharedLibrary(target='library', source=['librarycall.c'])
 

@@ -2,8 +2,6 @@ from SCons.Script import *
 import sys
 import os
 
-
-
 def darwincompile(env):
   print "darwincompile"
   platform = sys.platform
@@ -22,7 +20,7 @@ def darwincompile(env):
     if 'CC' in os.environ:
       OSX_CC = os.environ['CC'];
     else:
-      OSX_CC = 'gcc'
+      OSX_CC = 'clang'
 
     # Choose your FORTRAN compiler: g77 or gfortran
     # export F77=gfortran
