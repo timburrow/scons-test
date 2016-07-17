@@ -6,7 +6,7 @@ import darwin
 
 largeFileFlags = '-DHAVE_LARGEFILE_SUPPORT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE'
 env = Environment(CCFLAGS    = '-Os -Wall -m32 ' + largeFileFlags,)
-
+env.Append(LINKFLAGS = ['-install_name','@loader_path/../lib/library.dylib'])
 print env["ENV"]
 #print env.Dump()
 darwin.darwincompile(env)
